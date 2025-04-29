@@ -1,0 +1,11 @@
+{
+  "name": "astro-target-finder",
+  "scripts": {
+    "lint": "eslint . --ext .js",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "prettier": "^2.0.0"
+  }
+}
