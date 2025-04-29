@@ -1,37 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-gray-900 text-gray-100">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <link rel="stylesheet" href="/style.css" />
   <title>Astro Target Finder</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-p8B+eG9Xdycq/v2E9K3w1Rlj4jp7kaO0H0nElzG5c+eBxn52kzEEuGgKQxvGgJjKcAPN4g6bqK6Qm6+7ujIr6A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
 </head>
-<body>
-  <header>
-    <h1>Astro Target Finder</h1>
-    <button id="themeToggle">Light Mode</button>
+<body class="min-h-screen flex flex-col">
+
+  <header class="bg-gray-800 p-4 flex justify-between items-center shadow-md">
+    <h1 class="text-2xl font-semibold"><i class="fas fa-star mr-2"></i>Astro Target Finder</h1>
+    <button id="themeToggle" class="text-sm px-3 py-1 border rounded hover:bg-gray-700 transition">
+      Light Mode
+    </button>
   </header>
 
-  <section class="controls">
-    <label>ZIP code: <input id="zip" type="text" placeholder="e.g. 53703" /></label>
-    <label>Sensor W (mm): <input id="sensorWidth" type="number" value="22.3" /></label>
-    <label>Sensor H (mm): <input id="sensorHeight" type="number" value="14.9" /></label>
-    <label>Focal length (mm): <input id="focalLength" type="number" value="800" /></label>
-    <label>FOV variance (%): <input id="fovVariance" type="number" value="10" /></label>
-    <label>Max magnitude: <input id="maxMag" type="number" step="0.1" value="10" /></label>
-    <label>Catalog:
-      <select id="catalog">
+  <section class="p-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4 bg-gray-850">
+    <div>
+      <label class="block text-sm font-medium mb-1">ZIP code</label>
+      <input id="zip" class="w-full px-3 py-2 rounded bg-gray-700 focus:outline-none" placeholder="e.g. 53703" />
+    </div>
+    <div>
+      <label class="block text-sm font-medium mb-1">Sensor W (mm)</label>
+      <input id="sensorWidth" type="number" value="22.3" class="w-full px-3 py-2 rounded bg-gray-700 focus:outline-none" />
+    </div>
+    <div>
+      <label class="block text-sm font-medium mb-1">Sensor H (mm)</label>
+      <input id="sensorHeight" type="number" value="14.9" class="w-full px-3 py-2 rounded bg-gray-700 focus:outline-none" />
+    </div>
+    <div>
+      <label class="block text-sm font-medium mb-1">Focal (mm)</label>
+      <input id="focalLength" type="number" value="800" class="w-full px-3 py-2 rounded bg-gray-700 focus:outline-none" />
+    </div>
+    <div>
+      <label class="block text-sm font-medium mb-1">FOV variance (%)</label>
+      <input id="fovVariance" type="number" value="10" class="w-full px-3 py-2 rounded bg-gray-700 focus:outline-none" />
+    </div>
+    <div>
+      <label class="block text-sm font-medium mb-1">Max magnitude</label>
+      <input id="maxMag" type="number" step="0.1" value="10" class="w-full px-3 py-2 rounded bg-gray-700 focus:outline-none" />
+    </div>
+    <div>
+      <label class="block text-sm font-medium mb-1">Catalog</label>
+      <select id="catalog" class="w-full px-3 py-2 rounded bg-gray-700 focus:outline-none">
         <option>Messier</option>
-        <option>Caldwell</option>
         <option>NGC</option>
         <option>IC</option>
       </select>
-    </label>
-    <button id="searchBtn">Find Tonight’s Targets</button>
+    </div>
+    <div class="flex items-end">
+      <button id="searchBtn" class="w-full bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white font-semibold transition">
+        <i class="fas fa-meteor mr-2"></i>Find Tonight’s Targets
+      </button>
+    </div>
   </section>
 
-  <div id="loading" class="spinner" hidden></div>
-  <section id="results"></section>
+  <div id="loading" class="flex justify-center items-center my-6" hidden>
+    <i class="fas fa-spinner fa-pulse text-3xl"></i>
+  </div>
+
+  <main id="results" class="p-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></main>
 
   <script src="https://cdn.jsdelivr.net/npm/astronomy-engine/dist/astronomy.browser.min.js"></script>
   <script src="/script.js"></script>
