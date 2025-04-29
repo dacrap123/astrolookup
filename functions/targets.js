@@ -19,12 +19,15 @@ export async function onRequestGet(context) {
     const lng = parseFloat(place.longitude);
 
     // 2) Fetch catalog data dynamically
-    const rows = 10000;
-    const dataset = "ngc-ic-messier-catalog";
-    const apiUrl =
-      `https://data.opendatasoft.com/api/records/1.0/search?dataset=${dataset}` +
-      `&refine.catalog=${encodeURIComponent(catalog)}` +
-      `&rows=${rows}`;
+const rows = 10000;
+// note the “@datastro” suffix on the dataset identifier:
+const dataset = "ngc-ic-messier-catalog@datastro";
+const apiUrl =
+  `https://data.opendatasoft.com/api/records/1.0/search?` +
+  `dataset=${dataset}` +
+  `&refine.catalog=${encodeURIComponent(catalog)}` +
+  `&rows=${rows}`;
+
     const dataResp = await fetch(apiUrl);
     if (!dataResp.ok) {
       return new Response(JSON.stringify({ error: "Catalog fetch error" }), { status: 502, headers: { "Content-Type": "application/json" } });
