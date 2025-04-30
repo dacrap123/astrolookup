@@ -16,9 +16,9 @@
     referrerpolicy="no-referrer"
   />
 
-  <!-- Astronomy Engine (must load before your script.js) -->
+  <!-- Astronomy Engine (browser bundle) -->
   <script
-    src="https://cdn.jsdelivr.net/npm/astronomy-engine@latest/astronomy.browser.min.js"
+    src="https://cdn.jsdelivr.net/npm/astronomy-engine/astronomy.browser.min.js"
     crossorigin="anonymous"
   ></script>
 </head>
@@ -83,7 +83,7 @@
   <!-- RESULTS GRID -->
   <main id="results" class="p-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></main>
 
-  <!-- Your app’s main JavaScript -->
+  <!-- Your app’s main JavaScript (after AstronomyEngine loads) -->
   <script src="/script.js"></script>
 </body>
 </html>
