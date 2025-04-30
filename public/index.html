@@ -16,11 +16,12 @@
     referrerpolicy="no-referrer"
   />
 
-  <!-- Astronomy Engine UMD bundle (must load BEFORE your script.js) -->
-  <script
-    src="https://unpkg.com/astronomy-engine@2.1.19/astronomy.browser.min.js"
-    crossorigin="anonymous"
-  ></script>
+  <!-- Inline ES module loader for Astronomy Engine -->
+  <script type="module">
+    import * as AE from 'https://cdn.jsdelivr.net/npm/astronomy-engine';
+    // Attach the module to window so legacy scripts can use it:
+    window.AstronomyEngine = AE;
+  </script>
 </head>
 <body class="min-h-screen flex flex-col">
 
@@ -53,7 +54,7 @@
              class="w-full px-3 py-2 rounded bg-gray-700 focus:outline-none" />
     </div>
     <div>
-      <label class="block text-sm font-medium mb-1">Focal (mm)</label>
+      <label class="block text-sm font-medium mb-1">Focal length (mm)</label>
       <input id="focalLength" type="number" value="800"
              class="w-full px-3 py-2 rounded bg-gray-700 focus:outline-none" />
     </div>
@@ -94,7 +95,7 @@
         class="p-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
   </main>
 
-  <!-- Your app’s main JavaScript -->
+  <!-- Your app’s main script (after AstronomyEngine is attached) -->
   <script src="/script.js"></script>
 </body>
 </html>
